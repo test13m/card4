@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+/* Main heading for card's front cover */
+.card-front__heading5 {
+  font-size: 2rem;
+ position: absolute;
+ top: 120px;
+}
+
+/* Main heading for inside page */
+.inside-page__heading5 { 
+  padding-bottom: 1rem; 
+  width: 100%;
+}
+
+/* Mixed */
+
+/* For both inside page's main heading and 'view me' text on card front cover */
+.inside-page__heading5,
+.card-front__text-view5 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-top: .2rem;
+}
+
+.inside-page__heading--city5,
+.card-front__text-view--city5 { color: #ff62b2; }
+
+.inside-page__heading--ski5,
+.card-front__text-view--ski5 { color: #2aaac1; }
+
+.inside-page__heading--beach5,
+.card-front__text-view--beach5 { color: #fa7f67; }
+
+.inside-page__heading--camping5,
+.card-front__text-view--camping5 { color: #00b97c; }
+
+/* Front cover */
+
+.card-front__tp5 { color: #fafbfa; }
+
+/* For pricing text on card front cover */
+.card-front__text-price5 {
+  font-size: 1.2rem;
+  margin-top: -.2rem;
+}
+
+/* Back cover */
+
+/* For inside page's body text */
+.inside-page__text5 {
+  color: #333;
+  font-size: 18px;
+}
+
+/* Icons ===========================================*/
+
+.card-front__icon5 {
+  fill: #fafbfa;
+  font-size: 3vw;
+  height: 12rem;
+ position: absolute;
+  width: 12rem;
+  top: -25px;
+}
+
+/* Buttons =================================================*/
+
+.inside-page__btn5 {
+  background-color: transparent;
+  border: 3px solid;
+  border-radius: .5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  overflow: hidden;
+  padding: .7rem .75rem;
+  position: relative;
+  text-decoration: none;
+  transition: all .3s ease;
+  width: 90%;
+  z-index: 10;
+}
+
+.inside-page__btn5::before { 
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scaleY(0);
+  transition: all .3s ease;
+  width: 100%;
+  z-index: -1;
+}
+
+.inside-page__btn--city5 { 
+  border-color: #ff40a1;
+  color: #ff40a1;
+}
+
+.inside-page__btn--city5::before { 
+  background-color: #ff40a1;
+}
+
+.inside-page__btn--ski5 { 
+  border-color: #279eb2;
+  color: #279eb2;
+}
+
+.inside-page__btn--ski5::before { 
+  background-color: #279eb2;
+}
+
+.inside-page__btn--beach5 { 
+  border-color: #fa7f67;
+  color: #fa7f67;
+}
+
+.inside-page__btn--beach5::before { 
+  background-color: #fa7f67;
+}
+
+.inside-page__btn--camping5 { 
+  border-color: #00b97d;
+  color: #00b97d;
+}
+
+.inside-page__btn--camping5::before { 
+  background-color: #00b97d;
+}
+
+.inside-page__btn5:hover { 
+  color: #fafbfa;
+}
+
+.inside-page__btn5:hover::before { 
+  transform: scaleY(1);
+}
+
+/* Layout Structure=========================================*/
+
+/* Container to hold all cards in one place */
+.card-area5 {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-evenly;
+  padding: 1rem;
+  background: #fff;
+}
+
+/* Card ============================================*/
+
+/* Area to hold an individual card */
+.card-section5 {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+/* A container to hold the flip card and the inside page */
+.card5 {
+  background-color: rgba(0,0,0, .05);
+  box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.5);
+  height: 15rem;
+  position: relative;
+  transition: all 1s ease;
+  width: 15rem;
+}
+
+/* Flip card - covering both the front and inside front page */
+
+/* An outer container to hold the flip card. This excludes the inside page */
+.flip-card5 {
+  height: 15rem;
+  perspective: 100rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  visibility: hidden;
+  width: 15rem;
+  z-index: 100;
+}
+
+/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
+/* This is done so content in the inside page can be selected */
+.flip-card5 > * {
+  visibility: visible;
+}
+
+/* An inner container to hold the flip card. This excludes the inside page */
+.flip-card__container5 {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+  width: 100%;
+}
+
+.card-front5,
+.card-back5 {
+  backface-visibility: hidden;
+  height: 15.5rem;
+  left: 32px;
+  position: absolute;
+  top: 0;
+  width: 15.5rem;
+}
+
+/* Styling for the front side of the flip card */
+
+/* container for the front side */
+.card-front5 {
+  background-color: #d7ddd7;
+  height: 15.5rem;
+  width: 15.5rem;
+  left: -32px;
+}
+
+/* Front side's top section */
+.card-front__tp5 {
+  align-items: center;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
+  display: flex;
+  flex-direction: column;
+  height: 12rem;
+  justify-content: center;
+  padding: .75rem;
+}
+
+.card-front__tp--city5 {
+  background: linear-gradient(
+    to bottom,
+    #ff73b9,
+    #ff40a1
+  );
+}
+
+.card-front__tp--ski5 {
+  background: linear-gradient(
+    to bottom,
+    #47c2d7,
+    #279eb2
+  );
+}
+
+.card-front__tp--beach5 {
+  background: linear-gradient(
+    to bottom,
+    #fb9b88,
+    #f86647
+  );
+}
+
+.card-front__tp--camping5 {
+  background: linear-gradient(
+    to bottom,
+    #00db93,
+    #00b97d
+  );
+}
+
+/* Front card's bottom section */
+.card-front__bt5 {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styling for the back side of the flip card */
+
+.card-back5 {
+  background-color: #fafbfa;
+  transform: rotateY(180deg);
+}
+
+/* Specifically targeting the <video> element */
+.video__container5 {
+  clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Inside page */
+
+.inside-page5 {
+  background-color: #fafbfa;
+  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0,0,0,0.25);
+  height: 13.5rem;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  width: 13.5rem;
+  z-index: 1;
+  margin-right: 24px;
+}
+
+.inside-page__container5 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center; 
+  width: 100%;
+}
+
+/* Functionality ====================================*/
+
+/* This is to keep the card centered (within its container) when opened */
+.card5:hover {
+  box-shadow:
+  -.1rem 1.7rem 6.6rem -3.2rem rgba(0,0,0,0.75);
+  width: 30rem;
+}
+
+/* When the card is hovered, the flip card container will rotate */
+.card5:hover .flip-card__container5 {
+  transform: rotateY(-180deg);
+}
+
+/* When the card is hovered, the shadow on the inside page will shrink to the left */
+.card5:hover .inside-page5 {
+  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0,0,0,0.1);
+}
+    </style>
+</head>
+<body>
+  <section class="card-area5">
+  <section class="card-section5">
+                <div class="card5">
+                    <div class="flip-card5">
+                        <div class="flip-card__container5">
+                            <div class="card-front5">
+                                <div class="card-front__tp5 card-front__tp--city5">
+                                    <img src="assets/img/react.gif" alt="React Icon" class="card-front__icon5">
+
+                               <h2 class="card-front__heading5">
+                                React Native
+                            </h2>
+                                </div>
+
+                                <div class="card-front__bt5">
+                                    <p class="card-front__text-view5 card-front__text-view--city5">
+                                        Open
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-back5">
+                                <img class="video__container5" src="assets/img/react12.gif" alt="React Image">
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="inside-page5">
+                        <div class="inside-page__container5">
+                            <h3 class="inside-page__heading5 inside-page__heading--city5">
+                               REACT
+                            </h3>
+                            <p class="inside-page__text5">
+                                I provide full-stack web development using React, along with Android app development using React Native. I build scalable, user-friendly, and high-performance applications tailored to your needs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+              </section>
+  </section>
+</body>
+</html>
